@@ -12,4 +12,15 @@ router.get('/', function getRecipes(req,res){
     })
 })
 
+router.get('/:id/instructions',function getSteps(req,res){
+    const {id}= req.params;
+    Recipes.getInstructions(id)
+    .then((instructions)=>{
+        res.status(200).json(instructions)
+    })
+    .catch((error)=>{
+        res.status(200).json({error:error.message})
+    })
+})
+
 module.exports = router;
